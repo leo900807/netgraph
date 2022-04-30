@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+    <link rel="stylesheet" href="/css/login.css">
+  </head>
+  <div class="login-page">
+    <div class="form">
+      <h2>Admin login</h2>
+      <form class="login-form" method="post">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+        <input type="text" name="username" id="username" placeholder="username" />
+        <input type="password" name="password" id="password" placeholder="password" />
+        <% if(error.length){ %>
+          <span><font color="red"><%= error %></font></span>
+        <% } %>
+        <button type="submit" class="btn btn-green">Login</button>
+      </form>
+      <a href="/">
+        <button class="btn btn-gray">Back to map</button>
+      </a>
+    </div>
+  </div>
+
+</html>

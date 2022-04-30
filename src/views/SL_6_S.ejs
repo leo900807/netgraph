@@ -1,0 +1,50 @@
+<!-- SL_6_S -->
+<!-- 1.0638863367750158 -->
+<!-- 20562.795117187503 -->
+<!-- 1932800.0 -->
+
+<script>
+    //Handle click on polygon
+    var onPolyClick = function (event) {
+        //callFancyboxIframe('flrs.html')
+        var label = event.target.options.label;
+        var content = event.target.options.popup;
+        var otherStuff = event.target.options.otherStuff;
+        window.location.href = "https://www.csie.ncku.edu.tw/ncku_csie/";
+        if (event.target.options.color == 'red') {
+            event.target.setStyle({ 'color': 'blue' });
+        }
+        else {
+            event.target.setStyle({ 'color': 'red' });
+        }
+    };
+
+    //Create polygon
+    var popup_flor = "MyLabel";
+    var content_flor = "MyContent";
+    var color = 'blue';
+    var poly = new L.Polygon([
+		[22.994521, 120.218848],
+        [22.994506, 120.21917],
+        [22.994457, 120.219164],
+        [22.994459, 120.219143],
+        [22.994432, 120.219148],
+        [22.994427, 120.219164],
+        [22.99438, 120.219159],
+        [22.994385, 120.219014],
+        [22.994417, 120.219011],
+        [22.994415, 120.218976],
+        [22.994392, 120.218971],
+        [22.994395, 120.218834],
+        [22.994442, 120.218834],
+        [22.994439, 120.218816],
+        [22.994491, 120.218821],
+        [22.994489, 120.218845],
+        [22.994521, 120.218848],
+	], { 'label': popup_flor, 'popup': content_flor, 'otherStuff': 'abc123', 'color': 'red', 'weight': 2, 'fillColor': '#2eff29', 'fillOpacity': 0.45 });
+    poly.on('click', onPolyClick);
+
+    //Add polygon to map
+    poly.addTo(map);
+
+</script>

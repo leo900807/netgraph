@@ -1,0 +1,42 @@
+<!-- CY_3 -->
+<!-- 1.0322719731606727 -->
+<!-- 31975.656640625 -->
+<!-- 3097600.0 -->
+
+<script>
+    //Handle click on polygon
+    var onPolyClick = function (event) {
+        //callFancyboxIframe('flrs.html')
+        var label = event.target.options.label;
+        var content = event.target.options.popup;
+        var otherStuff = event.target.options.otherStuff;
+        window.location.href = "https://www.csie.ncku.edu.tw/ncku_csie/";
+        if (event.target.options.color == 'red') {
+            event.target.setStyle({ 'color': 'blue' });
+        }
+        else {
+            event.target.setStyle({ 'color': 'red' });
+        }
+    };
+
+    //Create polygon
+    var popup_flor = "MyLabel";
+    var content_flor = "MyContent";
+    var color = 'blue';
+    var poly = new L.Polygon([
+		[23.002239, 120.222583],
+        [23.002214, 120.222917],
+        [23.002097, 120.2229],
+        [23.002115, 120.222659],
+        [23.001945, 120.222644],
+        [23.00192, 120.222969],
+        [23.001803, 120.222954],
+        [23.001841, 120.22254],
+        [23.002239, 120.222583],
+	], { 'label': popup_flor, 'popup': content_flor, 'otherStuff': 'abc123', 'color': 'red', 'weight': 2, 'fillColor': '#2dff29', 'fillOpacity': 0.45 });
+    poly.on('click', onPolyClick);
+
+    //Add polygon to map
+    poly.addTo(map);
+
+</script>
