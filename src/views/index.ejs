@@ -45,7 +45,7 @@
     // Set up the OSM layer
   L.tileLayer(
     'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    { maxZoom: 18 }).addTo(map);
+    { maxZoom: 19 }).addTo(map);
 
   const popup = L.popup();
   function onMapClick(e) {
@@ -75,19 +75,20 @@
   }).addTo(map);
 </script>
 
-<%- include KF_1.ejs %>
-<%- include KF_2.ejs %>
-<%- include KF_3.ejs %>
-<%- include CY_1.ejs %>
-<%- include CY_3.ejs %>
-<%- include SL_1.ejs %>
-<%- include SL_2.ejs %>
-<%- include SL_3.ejs %>
-<%- include SL_4.ejs %>
-<%- include SL_6_N.ejs %>
-<%- include SL_6_S.ejs %>
-<%- include SL_8_N.ejs %>
-<%- include SL_8_S.ejs %>
-<%- include SL_9.ejs %>
+<%- include partial/KF_1.ejs %>
+<%- include partial/KF_2.ejs %>
+<%- include partial/KF_3.ejs %>
+<%- include partial/CY_1.ejs %>
+<%- include partial/CY_3_N.ejs %>
+<%- include partial/CY_3_S.ejs %>
+<%- include partial/SL_1.ejs %>
+<%- include partial/SL_2.ejs %>
+<%- include partial/SL_3.ejs %>
+<%- include partial/SL_4.ejs %>
+<%- include partial/SL_6_N.ejs %>
+<%- include partial/SL_6_S.ejs %>
+<%- include partial/SL_8_N.ejs %>
+<%- include partial/SL_8_S.ejs %>
+<%- include partial/SL_9.ejs %>
 
 </html>
