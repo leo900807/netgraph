@@ -1,0 +1,62 @@
+.table-page {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+.floor {
+    width: 30%;
+    height: 60px;
+}
+
+td,
+th {
+    font-size: 15px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.color-bar {
+    height: 10px;
+    width: 80%;
+}
+
+
+
+.custom-popup {
+    border-radius: 2px;
+    color: white;
+    line-height: 10px;
+    height: 10 px;
+    max-height: 300px;
+}
+
+
+.leaflet-popup-content-wrapper {
+    background: white;
+    height: 350px;
+    width: 200px;
+    border-radius: 10px;
+}
+
+
+
+.leaflet-popup-content {
+    margin-top: 20px;
+    margin-right: 19px;
+    padding-right: 12px;
+    min-width: 100 px !important;
+    max-height: 320px;
+    overflow: auto;
+}
