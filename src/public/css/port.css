@@ -1,0 +1,53 @@
+.table-page {
+    margin-left: auto;
+    margin-right: auto;
+
+}
+
+tr {
+    border-bottom: 1px solid black;
+}
+
+td, th {
+    font-size: 15px;
+}
+
+table {
+    border: 1px solid black;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.port {
+    height: 60px;
+	word-break: break-all;
+}
+
+.color-bar {
+    height: 10px;
+    width: 80%;
+}
+
+.custom-popup {
+    border-radius: 2px;
+    color: white;
+    line-height: 10px;
+    height: 10px;
+}
+
+.leaflet-popup-content-wrapper {
+    background: white;
+    height: 400px;
+    width: 450px;
+    border-radius: 10px;
+}
+
+.leaflet-popup-content {
+    margin-top: 20px;
+    margin-right: 19px;
+    padding-right: 12px;
+    min-width: 100px !important;
+	width: auto !important;
+    max-height: 350px;
+    overflow: auto;
+}
