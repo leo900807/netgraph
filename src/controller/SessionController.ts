@@ -4,15 +4,15 @@ import { NextFunction, Request, Response } from "express";
 import { User } from "../entity/User";
 import * as bcrypt from "bcrypt";
 
-export class SessionController {
+export class SessionController{
 
     private userRepository = AppDataSource.getRepository(User);
 
-    async new(req: Request, res: Response, next: NextFunction) {
+    async new(req: Request, res: Response, next: NextFunction){
         res.render("login", { csrfToken: req.csrfToken() });
     }
 
-    async create(req: Request, res: Response, next: NextFunction) {
+    async create(req: Request, res: Response, next: NextFunction){
         if(req.body.username == "" || req.body.password == ""){
             req.flash("error", "Username and password are both required");
             return res.redirect("/login");
@@ -37,7 +37,7 @@ export class SessionController {
         });
     }
 
-    async delete(req: Request, res: Response, next: NextFunction) {
+    async delete(req: Request, res: Response, next: NextFunction){
         req.session.destroy();
         return res.redirect(303, "/");
     }

@@ -6,7 +6,7 @@ export class IndexController{
         this.show = this.show.bind(this);
     }
 
-    async show(req: Request, res: Response, next: NextFunction) {
+    async show(req: Request, res: Response, next: NextFunction){
         if(req.session.userid)
             res.locals.userid = req.session.userid;
         res.render("index", { csrfToken: req.csrfToken() });
