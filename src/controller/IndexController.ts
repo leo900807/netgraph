@@ -1,9 +1,12 @@
 import { NextFunction, Request, Response } from "express";
+import { ApplicationController } from "./ApplicationController";
+import autobind from "class-autobind";
 
-export class IndexController{
+export class IndexController extends ApplicationController{
 
     constructor(){
-        this.show = this.show.bind(this);
+        super();
+        autobind(this);
     }
 
     async show(req: Request, res: Response, next: NextFunction){

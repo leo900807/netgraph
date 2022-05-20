@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/gui.css">
+</head>
+<div class="login-page">
+    <div class="form">
+        <h2>Register</h2>
+        <form class="login-form" method="post">
+            <% if(typeof errors != 'undefined'){ %>
+                <% errors.forEach(error => { %>
+                    <font color="red"><%= error.msg %></font><br>
+                <% }); %>
+            <% } %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="text" name="username" id="username" placeholder="username" value="<%= typeof username != 'undefined' ? username : '' %>" />
+            <input type="password" name="password" id="password" placeholder="password" />
+            <input type="password" name="re_password" id="re_password" placeholder="repeat password" />
+            <button type="submit" class="btn btn-green">Register</button>
+        </form>
+        <a href="/">
+            <button class="btn btn-gray">Back to map</button>
+        </a>
+    </div>
+</div>
+
+</html>

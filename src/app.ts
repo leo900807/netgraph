@@ -14,6 +14,7 @@ import * as router from "./router";
 import * as randomstring from "randomstring";
 import * as bcrypt from "bcrypt";
 import * as path from "path";
+import "dotenv/config";
 
 AppDataSource.initialize().then(async () => {
 
@@ -41,8 +42,10 @@ AppDataSource.initialize().then(async () => {
         store: new RedisStore({ client: redisClient })
     }));
 
+    // setup path to static assets
     app.use(express.static(path.join(__dirname, "public")));
 
+    // setup flash message
     app.use(flash());
 
     app.use((req, res, next) => {
@@ -51,11 +54,17 @@ AppDataSource.initialize().then(async () => {
         next();
     });
 
+    // setup csrf protection
     const csrfProtection = csrf();
     app.use(csrfProtection);
 
     // register express routes from defined application routes
     app.use(router);
+
+    // setup 404 route
+    app.use("*", (req: Request, res: Response) => {
+        res.status(404).render("404");
+    });
 
     // setup express app here
     // ...
@@ -71,10 +80,13 @@ AppDataSource.initialize().then(async () => {
     await bcrypt.genSalt(10, (err, Salt) => {
         bcrypt.hash(pwd, Salt, async (err, hash) => {
             if(err)
-                return console.log("It occurs some error when encrypting");
+                return console.log("It occurs some errors when encrypting");
             user.encryptedPwd = hash;
-            await AppDataSource.manager.save(user);
-            console.log(`Saved a new user with {\n\tid: ${user.id},\n\tuserName: ${user.userName},\n\tpassword: ${pwd}\n}`);
+            await AppDataSource.manager.save(user).then(res => {
+				console.log(`Saved a new user with {\n\tid: ${user.id},\n\tuserName: ${user.userName},\n\tpassword: ${pwd}\n}`);
+            }).catch(error => {
+                console.log("Admin is already created before.");
+            });
         });
     });
 

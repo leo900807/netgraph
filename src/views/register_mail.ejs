@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/gui.css">
+</head>
+<div class="login-page">
+    <div class="form">
+        <h2>Register</h2>
+        <form class="login-form" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="text" name="email" id="email" placeholder="Email address" value="<%= typeof email != 'undefined' ? email : '' %>"/>
+            <% if(typeof errors != 'undefined'){ %>
+                <% errors.forEach(error => { %>
+                    <span><font color="red"><%= error.msg %></font></span>
+                <% }); %>
+            <% } %>
+            <button type="submit" class="btn btn-green">Send Mail</button>
+        </form>
+        <a href="/">
+            <button class="btn btn-gray">Back to map</button>
+        </a>
+    </div>
+</div>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/gui.css">
+</head>
+<div class="login-page">
+    <div class="form">
+        <img src="/imgs/keyicon.png" style="width: 55px;">
+        <h2 style="margin-top:5px">Authentication</h2>
+        <form class="login-form" method="post">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="password" name="password" id="password" placeholder="password" />
+            <% if(error.length){ %>
+                <span>
+                    <font color="red">
+                        <%= error %>
+                    </font>
+                </span>
+            <% } %>
+            <button type="submit" class="btn btn-green">Confirm</button>
+        </form>
+        <a href="/">
+            <button class="btn btn-gray">Back to map</button>
+        </a>
+    </div>
+</div>
+
+</html>

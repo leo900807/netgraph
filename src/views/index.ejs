@@ -1,72 +1,73 @@
 <!DOCTYPE html>
 
 <head>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
-  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
-  <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
-  <% if(typeof userid != 'undefined'){ %>
-    <link rel="stylesheet" href="/css/port.css">
-  <% } else{ %>
-    <link rel="stylesheet" href="/css/floor.css">
-  <% } %>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.css">
+    <script src="https://cdn.jsdelivr.net/npm/leaflet-easybutton@2/src/easy-button.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <% if(typeof userid != 'undefined'){ %>
+        <link rel="stylesheet" href="/css/port.css">
+    <% } else{ %>
+        <link rel="stylesheet" href="/css/floor.css">
+    <% } %>
 
-   <!-- <link rel="stylesheet" href="./leaflet/leaflet.css" />
-   <script src="./leaflet/leaflet.js"></script> -->
-  <meta http-equiv="refresh" content="300" >
-  <meta name="csrf-token" content="<%= csrfToken %>">
+    <meta http-equiv="refresh" content="300" >
+    <meta name="csrf-token" content="<%= csrfToken %>">
 </head>
 
 <style>
-  .leaflet-bar i,
-  .leaflet-bar span {
-    line-height: 35px;
-    padding: 0px;
-    margin: 0px;
-  }
-  button {
-    padding: 0;
-  }
+    .leaflet-bar i,
+    .leaflet-bar span {
+        line-height: 35px;
+        padding: 0px;
+        margin: 0px;
+    }
+    button {
+        padding: 0;
+    }
 </style>
 
-
 <body>
-
-  <div id="map" style="height: 100vh;"></div>
-
+    <div id="map" style="height: 100vh;"></div>
 </body>
 
 <script>
-  $.ajaxSetup({
-    headers: {
-      "csrf-token": $('meta[name="csrf-token"]').attr("content")
-    }
-  });
+    $.ajaxSetup({
+        headers: {
+            "csrf-token": $('meta[name="csrf-token"]').attr("content")
+        }
+    });
 
-  var map = L.map('map').setView([22.998001, 120.2198975], 17.5);
-  map.attributionControl.setPrefix('');  
+    var map = L.map('map').setView([22.998001, 120.2198975], 17.5);
+    map.attributionControl.setPrefix('');    
 
     // Set up the OSM layer
-  L.tileLayer(
-    'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    { maxZoom: 19 }).addTo(map);
+    L.tileLayer(
+        'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        { maxZoom: 19 }
+    ).addTo(map);
 
-  // add login button
-  <% if(typeof userid != 'undefined'){ %>
-    L.easyButton('<img src="/imgs/logout-icon.png" style="width:18px;"/>', () => {
-      $.ajax({
-        url: "/login",
-        type: "delete",
-        success: () => {
-          location.reload();
-        }
-      });
-  <% } else{ %>
-    L.easyButton('<img src="/imgs/login-icon.png" style="width:18px;"/>', () => {
-      window.location.href = "/login";
-  <% } %>
-  }).addTo(map);
+    // add login button
+    <% if(typeof userid != 'undefined'){ %>
+        L.easyButton('<img src="/imgs/logout-icon.png" style="width:18px;"/>', () => {
+            $.ajax({
+                url: "/login",
+                type: "delete",
+                success: () => {
+                    location.reload();
+                }
+            });
+        }).addTo(map);
+
+        L.easyButton('<img src="/imgs/add-user.png" style="width:16px">', () => {
+            window.location.href = "/register";
+        }).addTo(map);
+    <% } else{ %>
+        L.easyButton('<img src="/imgs/login-icon.png" style="width:18px;"/>', () => {
+            window.location.href = "/login";
+        }).addTo(map);
+    <% } %>
 </script>
 
 <%- include partial/KF_1.ejs %>

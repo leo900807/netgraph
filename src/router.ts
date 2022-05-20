@@ -2,12 +2,16 @@ import { Request, Response } from "express";
 import { Router } from "express";
 import { IndexRouter } from "./router/IndexRouter";
 import { SessionRouter } from "./router/SessionRouter";
+import { RegistrationRouter } from "./router/RegistrationRouter";
+import { AuthenticationRouter } from "./router/AuthenticationRouter";
 
 const router = Router();
 
 const Routes = {
     "/": IndexRouter,
-    "/login": SessionRouter
+    "/login": SessionRouter,
+    "/register": RegistrationRouter,
+    "/auth": AuthenticationRouter
 };
 
 for(let routes in Routes){
