@@ -33,12 +33,14 @@ export const RegistrationRouter = [{
             .matches("^[A-Za-z0-9_]*$").withMessage("Username can only contains alpha, number and underscores(_)"),
         check("password").notEmpty().withMessage("Password is required").bail()
             .isLength({ min: 5 }).withMessage("Length of password is at least 5 characters"),
-        check("re_password").custom((value, {req}) => {
+        check("re_password").custom((value, { req }) => {
             if(value === "")
                 throw new Error("Repeat password is required");
             if(value !== req.body.password)
                 throw new Error("Password and repeat password are not same");
             return true;
-        })
+        }),
+        check("email").notEmpty().withMessage("Email address is required").bail()
+            .isEmail().withMessage("Invalid Email Address")
     ]
 }];

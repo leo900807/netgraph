@@ -15,7 +15,7 @@ export class SessionController extends ApplicationController{
     }
 
     async new(req: Request, res: Response, next: NextFunction){
-        res.render("login", { csrfToken: req.csrfToken() });
+        res.render("login", { title: "Login" });
     }
 
     async create(req: Request, res: Response, next: NextFunction){
@@ -29,9 +29,11 @@ export class SessionController extends ApplicationController{
             req.flash("error", "Invalid user");
             return res.redirect("/login");
         }
-        bcrypt.compare(password, user.encryptedPwd).then(result => {
+        bcrypt.compare(password, user.encryptedPwd).then(async result => {
             if(result){
+                const client = req.app.get("redis");
                 req.session.userid = user.id;
+                await client.sAdd(user.id.toString(), `sess:${req.sessionID}`);
                 req.flash("info", "Successful logged in");
                 console.log(`User ${user.userName} logged in`);
                 return res.redirect("/");
@@ -45,6 +47,8 @@ export class SessionController extends ApplicationController{
     }
 
     async delete(req: Request, res: Response, next: NextFunction){
+        const client = req.app.get("redis");
+        await client.sRem(req.session.userid.toString(), req.sessionID);
         req.session.destroy();
         return res.redirect(303, "/");
     }

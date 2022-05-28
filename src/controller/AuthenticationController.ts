@@ -23,7 +23,7 @@ export class AuthenticationController extends ApplicationController{
     }
 
     async new(req: Request, res: Response, next: NextFunction){
-        res.render("auth", { csrfToken: req.csrfToken() });
+        res.render("auth", { title: "Authenticate" });
     }
 
     async create(req: Request, res: Response, next: NextFunction){

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <link rel="stylesheet" href="/css/gui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="/javascript/user_panel.js"></script>
+    <meta name="csrf-token" content="<%= csrfToken %>">
+    <title><%= typeof title !== "undefined" ? (title + " - Netgraph") : "Netgraph" %></title>
+</head>
+
+<body>
+    <div class="login-page" style="max-width: 700px; height: 350px; width: 700px;">
+        <div class="form" style="width: 700px; height: 350px; max-width: 700px;">
+            <h1 style="text-align: left;">User panel</h1>
+            <h2 style="text-align: left; margin-left: 50px; margin-top: 50px;"><%= username %></h2>
+            <p style="font-size: 20px; text-align: left; margin-left: 50px;">Change email address or password?
+                <button id="send_mail_button" style="margin-left: 15px; font-size: 15px;" onclick="send_message()">Send mail</button>
+                <span id="send_message" style="margin-left: 10px; color:red;"></span>
+            </p>
+
+            <a href="/">
+                <button class="btn btn-gray" style="margin-top: 15%;">Back to map</button>
+            </a>
+        </div>
+    </div>
+</body>
+
+</html>
+

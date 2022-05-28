@@ -12,7 +12,7 @@ export class IndexController extends ApplicationController{
     async show(req: Request, res: Response, next: NextFunction){
         if(req.session.userid)
             res.locals.userid = req.session.userid;
-        res.render("index", { csrfToken: req.csrfToken() });
+        res.render("index");
     }
 
 };

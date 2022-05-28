@@ -1,9 +1,11 @@
-import { Request, Response } from "express";
-import { Router } from "express";
+import { Request, Response, Router } from "express";
 import { IndexRouter } from "./router/IndexRouter";
 import { SessionRouter } from "./router/SessionRouter";
 import { RegistrationRouter } from "./router/RegistrationRouter";
 import { AuthenticationRouter } from "./router/AuthenticationRouter";
+import { UserRouter } from "./router/UserRouter";
+import { ChangeRouter } from "./router/ChangeRouter";
+import { ForgetPasswordRouter } from "./router/ForgetPasswordRouter";
 
 const router = Router();
 
@@ -11,7 +13,10 @@ const Routes = {
     "/": IndexRouter,
     "/login": SessionRouter,
     "/register": RegistrationRouter,
-    "/auth": AuthenticationRouter
+    "/auth": AuthenticationRouter,
+    "/user": UserRouter,
+    "/change": ChangeRouter,
+    "/forget": ForgetPasswordRouter
 };
 
 for(let routes in Routes){

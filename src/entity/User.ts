@@ -1,7 +1,7 @@
-import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
+import { Entity, BaseEntity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class User{
+export class User extends BaseEntity{
 
     @PrimaryGeneratedColumn()
     id: number;
@@ -14,6 +14,15 @@ export class User{
 
     @Column()
     nickName: string;
+
+    @Column({ nullable: true })
+    email: string | null;
+
+    @Column({ nullable: true })
+    changeToken: string | null;
+
+    @Column({ nullable: true })
+    changeTokenCreatedAt: Date | null;
 
     @CreateDateColumn()
     createdAt: Date;

@@ -1,22 +1,18 @@
-<!DOCTYPE html>
+<%- include header.ejs %>
 
-<html>
-
-<head>
-    <link rel="stylesheet" href="/css/gui.css">
-</head>
 <div class="login-page">
     <div class="form">
-        <h2>Register</h2>
+        <h2>Forget password</h2>
         <form class="login-form" method="post">
             <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-            <input type="text" name="email" id="email" placeholder="Email address" value="<%= typeof email != 'undefined' ? email : '' %>"/>
+            <input type="text" name="username" id="username" placeholder="username" />
+            <input type="text" name="email" id="email" placeholder="Email address" />
             <% if(typeof errors != 'undefined'){ %>
                 <% errors.forEach(error => { %>
-                    <span><font color="red"><%= error.msg %></font></span>
+                    <font color="red"><%= error.msg %></font><br>
                 <% }); %>
             <% } %>
-            <button type="submit" class="btn btn-green">Send Mail</button>
+            <button type="submit" class="btn btn-green">Submit</button>
         </form>
         <a href="/">
             <button class="btn btn-gray">Back to map</button>
@@ -24,4 +20,4 @@
     </div>
 </div>
 
-</html>
+<%- include footer.ejs %>

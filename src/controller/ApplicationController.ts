@@ -28,7 +28,7 @@ export class ApplicationController{
 
     async authenticate_user(req: Request, res: Response, next: NextFunction){
         if(!req.session.userid)
-            this.raise404(req, res, next);
+            next("Not Found");
         if(next)
             next();
     }
@@ -39,10 +39,6 @@ export class ApplicationController{
             next();
         else
             res.redirect("/auth" + req.path);
-    }
-
-    async raise404(req: Request, res: Response, next: NextFunction){
-        res.status(404).render("404");
     }
 
 };

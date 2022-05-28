@@ -1,0 +1,25 @@
+<%- include header.ejs %>
+
+<div class="login-page">
+    <div class="form">
+        <h2>Change password or email</h2>
+        <form class="login-form" method="post">
+            <% if(typeof errors != 'undefined'){ %>
+                <% errors.forEach(error => { %>
+                    <font color="red"><%= error.msg %></font><br>
+                <% }); %>
+            <% } %>
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+            <input type="email" name="email" id="email" placeholder="Current email address" value="<%= typeof email !== 'undefined' ? email : '' %>" />
+            <p style="text-align: left;">Leave the following input empty if you don't want to change password.</p>
+            <input type="password" name="new_password" id="new_password" placeholder="new password" />
+            <input type="password" name="re_password" id="re_password" placeholder="repeat new password" />
+            <button type="submit" class="btn btn-green">Change</button>
+        </form>
+        <a href="/">
+            <button class="btn btn-gray">Back to map</button>
+        </a>
+    </div>
+</div>
+
+<%- include footer.ejs %>
